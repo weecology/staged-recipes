@@ -1,0 +1,99 @@
+{% set name = "DeepForest" %}
+{% set version = "0.2.15" %}
+{% set sha256 = "8860ce455f3a03704f80f8efbdbbd240e2bdd10446c7ddd1cd8acc5b3b1bc189" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  skip: true  # [py<35]
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - python>=3.6
+    - pip
+    - setuptools <=39.1.0
+    - setuptools
+    - sphinx
+    - recommonmark
+    - pyyaml
+    - pytest
+    - numpydoc
+    - cython>=0.28
+    - h5py
+    - xmltodict
+    - tqdm
+    - numpy
+    - pillow
+    - pip
+    - matplotlib
+    - sphinx_rtd_theme
+    - pandas
+    - twine
+    - rasterstats
+    # - pip:
+    - keras-resnet
+    - opencv-python
+    - slidingwindow
+    - keras==2.3.0
+    - tensorflow==1.14
+    - sphinx-markdown-tables  
+    - bumpversion
+    - git+git://github.com/bw4sz/keras-retinanet.git
+
+  run:
+    - python
+
+requirements:
+  host:
+    - python >=3.6
+    - pip
+  run:
+    - python >=3.6
+
+test:
+  requires:
+    - pytest
+  commands:
+    - pytest
+
+about:
+  home: https://github.com/weecology/DeepForest
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: 'Python Package for Tree Crown Detection in Airborne RGB imagery'
+  description: |
+    DeepForest is a python package for training and predicting individual
+    tree crowns from airborne RGB imagery. DeepForest comes with a prebuilt
+    model trained on data from the National Ecological Observation Network.
+    Users can extend this model by annotating and training custom models
+    starting from the prebuilt model.
+
+    DeepForest es un paquete de python para la predicción
+    de coronas de árboles individuales basada en modelos entrenados
+    con imágenes remotas RVA ( RGB, por sus siglas en inglés).
+    DeepForest viene con un modelo entrenado con datos proveídos por la
+    Red Nacional de Observatorios Ecológicos (NEON, por sus siglas en inglés).
+    Los usuarios pueden ampliar este modelo pre-construido por anotación
+    de etiquetas y entrenamiento con datos locales. La documentación de
+    DeepForest está escrita en inglés, sin embargo, agradeceríamos
+    contribuciones con fin de hacerla accesible en otros idiomas.
+  doc_url: https://deepforest.readthedocs.io/en/latest/
+  dev_url: https://github.com/weecology/DeepForest
+
+extra:
+  recipe-maintainers:
+    # GitHub IDs for maintainers of the recipe.
+    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
+    # - LisaSimpson
+    - henrykironde
