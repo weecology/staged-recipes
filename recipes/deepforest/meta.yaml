@@ -46,16 +46,20 @@ requirements:
     - twine
     - rasterstats
     - psutil
+    - keras==2.3.0
+    - keras-resnet
+    - opencv-python
+    - slidingwindow
+    - git+git://github.com/bw4sz/keras-retinanet.git
 
 test:
   imports:
 
   source_files:
     - tests/*
-    - requirements.txt
 
   commands:
-    - {{ PYTHON }} -m pip install -r requirements.txt && pytest -v --ignore=keras-retinanet/    # [unix]
+    - pytest -v --ignore=keras-retinanet/    # [unix]
 
 about:
   home: https://github.com/weecology/DeepForest
